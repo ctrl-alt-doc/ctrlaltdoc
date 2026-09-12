@@ -1,0 +1,15 @@
+{
+	"name": "ctrlaltdoc",
+	"private": true,
+	"version": "1.0.0",
+	"license": "MIT",
+	"packageManager": "pnpm@11.22.0",
+	"scripts": {
+		"check": "pnpm --dir apps/docs check",
+		"lint": "pnpm --dir apps/docs lint",
+		"build": "pnpm --filter ctrl-alt-doc build && pnpm --dir apps/docs build"
+	},
+	"devDependencies": {
+		"typescript": "^6.0.3"
+	}
+}

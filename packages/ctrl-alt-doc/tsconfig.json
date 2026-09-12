@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"strict": true,
+		"skipLibCheck": true,
+		"rootDir": "src",
+		"outDir": "dist",
+		"declaration": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"types": ["node"]
+	},
+	"include": [
+		"src/index.ts",
+		"src/svelte.d.ts",
+		"src/vite.ts",
+		"src/server.ts",
+		"src/components.ts",
+		"src/lib/server/**/*.ts",
+		"src/lib/icons/definitions.ts",
+		"src/lib/icons/render.ts",
+		"src/lib/icons/resolve.ts",
+		"src/lib/server/svelte-document.ts"
+	],
+	"exclude": ["dist", "node_modules"]
+}

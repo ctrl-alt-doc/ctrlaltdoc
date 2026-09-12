@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+.svelte-kit/
+build/
+.env
+.env.*
+!.env.example
+*.tgz
+
+# Generated package output
+packages/ctrl-alt-doc/dist/
+packages/create-ctrlaltdoc/dist/

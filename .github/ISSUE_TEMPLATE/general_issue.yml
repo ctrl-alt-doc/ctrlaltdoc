@@ -1,0 +1,27 @@
+name: Other issue
+description: Report a documentation, packaging, or project issue that is not a bug report.
+title: "Issue: "
+labels:
+  - triage
+body:
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue
+      description: Clearly describe what needs attention.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Include relevant files, versions, commands, links, or screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What would a satisfactory resolution look like?
+    validations:
+      required: true

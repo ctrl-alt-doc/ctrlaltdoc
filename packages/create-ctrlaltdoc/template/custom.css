@@ -1,0 +1,60 @@
+/*
+ * ctrl alt doc — custom.css
+ *
+ * Add site-specific styling here.
+ *
+ * ctrl alt doc's framework styles live inside ctrl alt doc and are maintained
+ * by the framework. This file is yours to customise.
+ *
+ * You can override existing ctrl alt doc variables or add styles
+ * for your own content and components.
+ */
+
+/* ==========================================================================
+   Theme customisation
+   ========================================================================== */
+
+/*
+:root {
+	--accent: #ce0985;
+	--accent-hover: #be0078;
+}
+*/
+
+/*
+.dark,
+.dark-theme {
+	--accent: #ff88c8;
+	--accent-hover: #ffb0d9;
+}
+*/
+
+/* ==========================================================================
+   Site customisation
+   ========================================================================== */
+
+/*
+body {
+	font-family: var(--font-sans);
+}
+*/
+
+/*
+.document {
+	max-width: 900px;
+}
+*/
+
+/* ==========================================================================
+   Custom content
+   ========================================================================== */
+
+/*
+.my-custom-class {
+	padding: 1rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	background: var(--surface);
+	color: var(--text);
+}
+*/
