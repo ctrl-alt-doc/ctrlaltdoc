@@ -101,7 +101,7 @@ The included Reference section documents each of these features individually.
 
 ## Project status
 
-ctrl alt doc 1.0.0 is the first release candidate of the documentation framework.
+ctrl alt doc 1.0.0 is the first public release of the documentation framework.
 
 The bundled documentation demonstrates the supported feature set. The package API, generated-project workflow, server-side rendering, and production build have been validated together.
 
