@@ -26,4 +26,10 @@ export default defineConfig({
   ssr: {
     noExternal: ["@hugeicons/svelte"],
   },
+
+  server: {
+    fs: {
+      allow: ["."],
+    },
+  },
 });
