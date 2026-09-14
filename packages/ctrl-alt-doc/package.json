@@ -23,6 +23,10 @@
 			"types": "./dist/vite.d.ts",
 			"import": "./dist/vite.js"
 		},
+		"./content": {
+			"types": "./dist/content.d.ts",
+			"import": "./dist/content.js"
+		},
 		"./styles/ctrlaltdoc.css": "./src/lib/styles/ctrlaltdoc.css"
 	},
 	"scripts": {

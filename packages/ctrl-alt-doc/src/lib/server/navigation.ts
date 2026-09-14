@@ -1,18 +1,19 @@
-import { readFile, readdir } from 'node:fs/promises';
-
 import { join, relative, extname, basename } from 'node:path';
 
 import yaml from 'yaml';
 
 import { getDocument } from './documents.js';
+import { readContentDirectory, readContentFile } from './content-source.js';
 
 import type { CategoryConfig, NavigationItem } from './types.js';
+import type { ContentManifest } from './content-source.js';
 
 const DOCS_PATH = 'docs';
 
 type RuntimeConfig = {
 	callouts?: Record<string, { label?: string; icon?: string }>;
 	icons?: Record<string, string>;
+	content?: ContentManifest;
 };
 
 function titleFromFilename(filename: string): string {
@@ -22,11 +23,14 @@ function titleFromFilename(filename: string): string {
 		.replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-async function getCategoryConfig(directory: string): Promise<CategoryConfig> {
+async function getCategoryConfig(
+	directory: string,
+	config: RuntimeConfig
+): Promise<CategoryConfig> {
 	const configPath = join(directory, '_category.yml');
 
 	try {
-		const source = await readFile(configPath, 'utf-8');
+		const source = await readContentFile(configPath, config.content);
 
 		return yaml.parse(source) ?? {};
 	} catch {
@@ -38,9 +42,7 @@ async function buildNavigation(
 	directory: string,
 	config: RuntimeConfig
 ): Promise<NavigationItem[]> {
-	const entries = await readdir(directory, {
-		withFileTypes: true
-	});
+	const entries = await readContentDirectory(directory, config.content);
 
 	const items: NavigationItem[] = [];
 
@@ -53,7 +55,7 @@ async function buildNavigation(
 		if (entry.isDirectory()) {
 			const children = await buildNavigation(fullPath, config);
 
-			const categoryConfig = await getCategoryConfig(fullPath);
+			const categoryConfig = await getCategoryConfig(fullPath, config);
 
 			const categorySlug = relative(DOCS_PATH, fullPath);
 
@@ -70,10 +72,7 @@ async function buildNavigation(
 			}
 
 			items.push({
-				title:
-					categoryConfig.label ??
-					categoryDocument?.title ??
-					titleFromFilename(entry.name),
+				title: categoryConfig.label ?? categoryDocument?.title ?? titleFromFilename(entry.name),
 
 				slug: categorySlug,
 

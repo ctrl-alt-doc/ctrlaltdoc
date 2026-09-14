@@ -1,29 +1,35 @@
-import { readFile, readdir } from 'node:fs/promises';
-
 import { join, relative, extname } from 'node:path';
 
 import matter from 'gray-matter';
 
 import { renderMarkdown } from './markdown.js';
+import { readContentDirectory, readContentFile } from './content-source.js';
 
 import type { DocCard, Document, DocumentFrontmatter } from './types.js';
+import type { ContentManifest } from './content-source.js';
 
 const DOCS_PATH = 'docs';
 
-async function resolveDocumentPath(path: string): Promise<string> {
+type RuntimeConfig = {
+	callouts?: Record<string, { label?: string; icon?: string }>;
+	icons?: Record<string, string>;
+	content?: ContentManifest;
+};
+
+async function resolveDocumentPath(path: string, config: RuntimeConfig): Promise<string> {
 	const normalizedPath = path === '' ? 'index' : path;
 
 	const directPath = join(DOCS_PATH, `${normalizedPath}.md`);
 
 	try {
-		await readFile(directPath);
+		await readContentFile(directPath, config.content);
 
 		return directPath;
 	} catch {
 		const indexPath = join(DOCS_PATH, normalizedPath, 'index.md');
 
 		try {
-			await readFile(indexPath);
+			await readContentFile(indexPath, config.content);
 
 			return indexPath;
 		} catch {
@@ -32,8 +38,11 @@ async function resolveDocumentPath(path: string): Promise<string> {
 	}
 }
 
-export async function getDocCards(categorySlug: string): Promise<DocCard[]> {
-	const files = await findMarkdownFiles(DOCS_PATH);
+export async function getDocCards(
+	categorySlug: string,
+	config: RuntimeConfig = {}
+): Promise<DocCard[]> {
+	const files = await findMarkdownFiles(DOCS_PATH, config);
 
 	const cards: DocCard[] = [];
 
@@ -58,7 +67,7 @@ export async function getDocCards(categorySlug: string): Promise<DocCard[]> {
 			continue;
 		}
 
-		const source = await readFile(file, 'utf-8');
+		const source = await readContentFile(file, config.content);
 		const { data } = matter(source);
 
 		if (data.draft) {
@@ -75,16 +84,10 @@ export async function getDocCards(categorySlug: string): Promise<DocCard[]> {
 	return cards;
 }
 
-export async function getDocument(
-	path: string,
-	config: {
-		callouts?: Record<string, { label?: string; icon?: string }>;
-		icons?: Record<string, string>;
-	}
-): Promise<Document> {
-	const filePath = await resolveDocumentPath(path);
+export async function getDocument(path: string, config: RuntimeConfig): Promise<Document> {
+	const filePath = await resolveDocumentPath(path, config);
 
-	const source = await readFile(filePath, 'utf-8');
+	const source = await readContentFile(filePath, config.content);
 
 	const { data, content } = matter(source);
 
@@ -99,7 +102,7 @@ export async function getDocument(
 
 	const slug = path === '' ? '' : path;
 
-	const docCards = await getDocCards(slug);
+	const docCards = await getDocCards(slug, config);
 
 	const rendered = await renderMarkdown(content, {
 		slug,
@@ -121,10 +124,8 @@ export async function getDocument(
 	};
 }
 
-async function findMarkdownFiles(directory: string): Promise<string[]> {
-	const entries = await readdir(directory, {
-		withFileTypes: true
-	});
+async function findMarkdownFiles(directory: string, config: RuntimeConfig): Promise<string[]> {
+	const entries = await readContentDirectory(directory, config.content);
 
 	const files: string[] = [];
 
@@ -132,7 +133,7 @@ async function findMarkdownFiles(directory: string): Promise<string[]> {
 		const fullPath = join(directory, entry.name);
 
 		if (entry.isDirectory()) {
-			files.push(...(await findMarkdownFiles(fullPath)));
+			files.push(...(await findMarkdownFiles(fullPath, config)));
 
 			continue;
 		}
@@ -145,13 +146,8 @@ async function findMarkdownFiles(directory: string): Promise<string[]> {
 	return files;
 }
 
-export async function getDocuments(
-	config: {
-		callouts?: Record<string, { label?: string; icon?: string }>;
-		icons?: Record<string, string>;
-	}
-): Promise<Document[]> {
-	const files = await findMarkdownFiles(DOCS_PATH);
+export async function getDocuments(config: RuntimeConfig): Promise<Document[]> {
+	const files = await findMarkdownFiles(DOCS_PATH, config);
 
 	const documents: Document[] = [];
 

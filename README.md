@@ -28,7 +28,21 @@ Open the local URL shown in the terminal. Your documentation lives in the `docs/
 - Built-in Hugeicons Stroke Rounded icons
 - User-authored Svelte components in Markdown
 - Server-side rendering and production builds
+- Build-time content bundling for serverless and edge deployments
 - A complete example documentation set in every new project
+
+Production builds embed Markdown and category metadata in the server bundle. Hosts such as
+Cloudflare Workers do not need filesystem access to the source `docs/` directory at runtime.
+Applications created before this behavior was introduced should update `src/lib/server/site.ts`:
+
+```ts
+import config from '../../../ctrlaltdoc.config';
+import content from 'ctrl-alt-doc/content';
+
+export function getSiteConfig() {
+	return { ...config, content };
+}
+```
 
 ## Customise your site
 

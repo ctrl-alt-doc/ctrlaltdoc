@@ -15,6 +15,7 @@
 	},
 	"include": [
 		"src/index.ts",
+		"src/content.ts",
 		"src/svelte.d.ts",
 		"src/vite.ts",
 		"src/server.ts",

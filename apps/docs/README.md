@@ -63,6 +63,9 @@ The example documentation is intentionally comprehensive. It demonstrates the bu
 
 ctrl alt doc uses your `docs/` directory as the source for your documentation.
 
+The Vite plugin embeds that content in production builds. Runtime servers read from the embedded
+manifest, while development and direct Node usage can continue reading from the filesystem.
+
 A typical project looks like this:
 
 ```text
