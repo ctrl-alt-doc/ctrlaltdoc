@@ -1,6 +1,6 @@
 {
 	"name": "create-ctrlaltdoc",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"description": "Create a ctrl alt doc project.",
 	"type": "module",
