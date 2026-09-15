@@ -14,6 +14,16 @@ const contentModuleId = "ctrl-alt-doc/content";
 const resolvedContentModuleId = `\0${contentModuleId}`;
 const contentExtensions = new Set([".md", ".yml", ".yaml"]);
 
+function isDocsMarkdown(file: string, root: string): boolean {
+  if (!file.endsWith(".md") || file.includes("/node_modules/")) {
+    return false;
+  }
+
+  const path = relative(join(root, "docs"), file);
+
+  return path !== "" && path !== ".." && !path.startsWith(`..${sep}`);
+}
+
 async function findContentFiles(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const files: string[] = [];
@@ -55,45 +65,58 @@ export function ctrlAltDoc(options: CtrlAltDocVitePluginOptions) {
       }
     },
     async load(this: { addWatchFile(file: string): void }, id: string) {
-      if (id !== resolvedContentModuleId) {
-        return undefined;
+      if (id === resolvedContentModuleId) {
+        const docsRoot = join(root, "docs");
+        let files: string[];
+
+        try {
+          files = await findContentFiles(docsRoot);
+        } catch {
+          throw new Error(
+            `ctrl alt doc could not find the docs directory at ${docsRoot}.`,
+          );
+        }
+
+        const homepage = join(docsRoot, "index.md");
+
+        if (!files.includes(homepage)) {
+          throw new Error(`ctrl alt doc requires a homepage at ${homepage}.`);
+        }
+
+        const manifest: Record<string, string> = {};
+
+        for (const file of files) {
+          this.addWatchFile(file);
+          const path = relative(root, file).split(sep).join("/");
+          manifest[path] = await readFile(file, "utf8");
+        }
+
+        return `export default ${JSON.stringify(manifest)};`;
       }
 
-      const docsRoot = join(root, "docs");
-      let files: string[];
-
-      try {
-        files = await findContentFiles(docsRoot);
-      } catch {
-        throw new Error(
-          `ctrl alt doc could not find the docs directory at ${docsRoot}.`,
-        );
-      }
-
-      const homepage = join(docsRoot, "index.md");
-
-      if (!files.includes(homepage)) {
-        throw new Error(`ctrl alt doc requires a homepage at ${homepage}.`);
-      }
-
-      const manifest: Record<string, string> = {};
-
-      for (const file of files) {
-        this.addWatchFile(file);
-        const path = relative(root, file).split(sep).join("/");
-        manifest[path] = await readFile(file, "utf8");
-      }
-
-      return `export default ${JSON.stringify(manifest)};`;
-    },
-    async transform(_code: string, id: string) {
       const file = id.split("?", 1)[0];
 
-      if (!file.endsWith(".md") || file.includes("/node_modules/")) {
+      if (!isDocsMarkdown(file, root)) {
         return undefined;
       }
 
-      const source = await readFile(file, "utf8");
+      try {
+        return await readFile(file, "utf8");
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+          return "";
+        }
+
+        throw error;
+      }
+    },
+    async transform(code: string, id: string) {
+      const file = id.split("?", 1)[0];
+
+      if (!isDocsMarkdown(file, root)) {
+        return undefined;
+      }
+
       const docsRoot = `${root}${sep}docs`;
       const relativePath = relative(docsRoot, file).split(sep).join("/");
       const resolvedSlug = relativePath
@@ -101,7 +124,7 @@ export function ctrlAltDoc(options: CtrlAltDocVitePluginOptions) {
         .replace(/\.md$/, "");
       const slug = resolvedSlug === "index" ? "" : resolvedSlug;
       const component = await renderSvelteDocument(
-        source,
+        code,
         options.config,
         slug,
       );
