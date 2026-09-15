@@ -3,7 +3,7 @@
 	import Search from './Search.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import { resolveIcon } from '../icons/resolve';
-	import type { SocialLinks } from 'ctrl-alt-doc';
+	import type { SocialLinks } from '../../index';
 
 	const socialIcons: Record<keyof SocialLinks, string> = {
 		github: 'brand-github',

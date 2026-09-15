@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import type { TocItem } from 'ctrl-alt-doc/server';
+	import type { TocItem } from '../server/types';
 
 	let {
 		items

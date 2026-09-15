@@ -1,0 +1,61 @@
+name: Publish GitHub Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Publish ${{ matrix.package-name }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package-directory: packages/ctrl-alt-doc
+            package-name: '@ctrl-alt-doc/ctrl-alt-doc'
+            package-filter: ctrl-alt-doc
+          - package-directory: packages/create-ctrlaltdoc
+            package-name: '@ctrl-alt-doc/create-ctrlaltdoc'
+            package-filter: create-ctrlaltdoc
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: '@ctrl-alt-doc'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm --filter "${{ matrix.package-filter }}" build
+
+      - name: Prepare GitHub Packages metadata
+        working-directory: ${{ matrix.package-directory }}
+        env:
+          PACKAGE_NAME: ${{ matrix.package-name }}
+        run: |
+          npm pkg set name="$PACKAGE_NAME"
+          npm pkg set publishConfig.registry="https://npm.pkg.github.com"
+
+      - name: Publish package
+        working-directory: ${{ matrix.package-directory }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

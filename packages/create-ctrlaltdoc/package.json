@@ -3,6 +3,11 @@
 	"version": "1.0.3",
 	"license": "MIT",
 	"description": "Create a ctrl alt doc project.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ctrl-alt-doc/ctrlaltdoc.git",
+		"directory": "packages/create-ctrlaltdoc"
+	},
 	"type": "module",
 	"bin": {
 		"create-ctrlaltdoc": "dist/index.js"

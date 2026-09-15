@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NavigationItem } from 'ctrl-alt-doc/server';
+	import type { NavigationItem } from '../server/types';
 
 	import { resolve } from '$app/paths';
 

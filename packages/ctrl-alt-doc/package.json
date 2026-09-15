@@ -3,6 +3,11 @@
 	"version": "1.0.2",
 	"license": "MIT",
 	"description": "Documentation, without the baggage.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ctrl-alt-doc/ctrlaltdoc.git",
+		"directory": "packages/ctrl-alt-doc"
+	},
 	"type": "module",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",

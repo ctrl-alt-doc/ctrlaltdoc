@@ -3,7 +3,6 @@ import { error } from '@sveltejs/kit';
 import {
 	createBreadcrumbs,
 	createPagination,
-	createTableOfContents,
 	flattenNavigation,
 	getDocument
 } from 'ctrl-alt-doc/server';
@@ -21,7 +20,7 @@ export async function load({ params, parent }) {
 
 		return {
 			document,
-			toc: createTableOfContents(document.source),
+			toc: document.toc,
 			breadcrumbs: createBreadcrumbs(navigation, params.slug),
 			pagination: createPagination(flatNavigation, params.slug)
 		};

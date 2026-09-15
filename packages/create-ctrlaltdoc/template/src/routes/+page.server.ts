@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { createTableOfContents, getDocument } from 'ctrl-alt-doc/server';
+import { getDocument } from 'ctrl-alt-doc/server';
 
 import { getSiteConfig } from '$lib/server/site';
 
@@ -11,7 +11,7 @@ export async function load() {
 
 		return {
 			document,
-			toc: createTableOfContents(document.source)
+			toc: document.toc
 		};
 	} catch {
 		error(404, 'Homepage not found');

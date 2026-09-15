@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { BreadcrumbItem, Document, Pagination } from 'ctrl-alt-doc/server';
+	import type { BreadcrumbItem, Document, Pagination } from '../server/types';
 
 	import IconReference from './IconReference.svelte';
 

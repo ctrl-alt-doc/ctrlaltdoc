@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { FooterConfig } from 'ctrl-alt-doc';
+	import type { FooterConfig } from '../../index';
 	import { resolveIcon } from '../icons/resolve';
 
 	let {

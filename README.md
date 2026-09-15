@@ -71,6 +71,26 @@ Read the [ctrl alt doc documentation](https://ctrlaltdoc.cc) for the complete fe
 - [`ctrl-alt-doc`](https://www.npmjs.com/package/ctrl-alt-doc) — the documentation framework
 - [`create-ctrlaltdoc`](https://www.npmjs.com/package/create-ctrlaltdoc) — the project creator
 
+### GitHub Packages
+
+Scoped mirrors are also published to GitHub Packages for GitHub-native workflows:
+
+- `@ctrl-alt-doc/ctrl-alt-doc`
+- `@ctrl-alt-doc/create-ctrlaltdoc`
+
+npmjs remains the recommended installation source. GitHub Packages requires GitHub authentication, including for public packages. Add the following to `.npmrc`, replacing `TOKEN` with a classic personal access token that has `read:packages` permission:
+
+```ini
+@ctrl-alt-doc:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=TOKEN
+```
+
+You can then install the framework mirror with:
+
+```bash
+npm install @ctrl-alt-doc/ctrl-alt-doc
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for issue and pull request guidance. ctrl alt doc is released under the [MIT License](LICENSE).
