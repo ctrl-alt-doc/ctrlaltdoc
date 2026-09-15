@@ -62,12 +62,14 @@ sidebar:
 
 ### Badges
 
-Pages can display a badge in the sidebar.
+Pages can display a badge in the sidebar and in generated documentation cards.
 
 ```yaml
 sidebar:
   badge: New
 ```
+
+Supported badge values are `New`, `Updated`, and `Beta`.
 
 ## Drafts
 

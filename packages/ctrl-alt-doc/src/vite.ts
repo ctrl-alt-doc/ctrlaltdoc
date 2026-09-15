@@ -2,6 +2,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { extname, join, relative, sep } from "node:path";
 
 import { renderSvelteDocument } from "./lib/server/svelte-document.js";
+import { getUpdateNotice } from "./lib/server/update-check.js";
 
 import type { CtrlAltDocConfig } from "./index.js";
 
@@ -38,6 +39,15 @@ export function ctrlAltDoc(options: CtrlAltDocVitePluginOptions) {
     enforce: "pre" as const,
     configResolved(resolvedConfig: { root: string }) {
       root = resolvedConfig.root;
+    },
+    configureServer(server: {
+      config: { logger: { info(message: string): void } };
+    }) {
+      void getUpdateNotice(root).then((notice) => {
+        if (notice) {
+          server.config.logger.info(notice);
+        }
+      });
     },
     resolveId(id: string) {
       if (id === contentModuleId) {
@@ -86,9 +96,10 @@ export function ctrlAltDoc(options: CtrlAltDocVitePluginOptions) {
       const source = await readFile(file, "utf8");
       const docsRoot = `${root}${sep}docs`;
       const relativePath = relative(docsRoot, file).split(sep).join("/");
-      const slug = relativePath
+      const resolvedSlug = relativePath
         .replace(/\/index\.md$/, "")
         .replace(/\.md$/, "");
+      const slug = resolvedSlug === "index" ? "" : resolvedSlug;
       const component = await renderSvelteDocument(
         source,
         options.config,

@@ -1,6 +1,6 @@
 {
 	"name": "ctrl-alt-doc",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"description": "Documentation, without the baggage.",
 	"type": "module",

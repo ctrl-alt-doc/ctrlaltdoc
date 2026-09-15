@@ -36,6 +36,17 @@
 			<div class:active={isActive} class="sidebar-category">
 				<a href={resolve(`/${item.slug}`)}>
 					{item.title}
+
+					{#if item.badge}
+						<span
+							class:badge-new={item.badge === 'New'}
+							class:badge-updated={item.badge === 'Updated'}
+							class:badge-beta={item.badge === 'Beta'}
+							class="sidebar-badge"
+						>
+							{item.badge}
+						</span>
+					{/if}
 				</a>
 
 				{#if item.children?.length}
@@ -66,6 +77,7 @@
 					<span
 						class:badge-new={item.badge === 'New'}
 						class:badge-updated={item.badge === 'Updated'}
+						class:badge-beta={item.badge === 'Beta'}
 						class="sidebar-badge"
 					>
 						{item.badge}

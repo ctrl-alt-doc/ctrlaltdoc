@@ -2,11 +2,13 @@ import type { TocItem } from './toc.js';
 
 export type { TocItem } from './toc.js';
 
+export type Badge = 'New' | 'Updated' | 'Beta';
+
 export interface SidebarConfig {
 	label?: string;
 	position?: number;
 	hidden?: boolean;
-	badge?: 'New' | 'Updated';
+	badge?: Badge;
 }
 
 export interface CategoryConfig {
@@ -14,6 +16,7 @@ export interface CategoryConfig {
 	position?: number;
 	collapsed?: boolean;
 	hidden?: boolean;
+	badge?: Badge;
 }
 
 export interface DocumentFrontmatter {
@@ -46,7 +49,7 @@ export interface NavigationItem {
 	collapsed?: boolean;
 	children?: NavigationItem[];
 	description?: string;
-	badge?: 'New' | 'Updated';
+	badge?: Badge;
 }
 
 export interface CtrlaltdocThemeConfig {
@@ -79,4 +82,5 @@ export interface DocCard {
 	title: string;
 	description: string;
 	slug: string;
+	badge?: Badge;
 }

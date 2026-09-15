@@ -82,6 +82,8 @@ async function buildNavigation(
 
 				collapsed: categoryConfig.collapsed ?? true,
 
+				badge: categoryConfig.badge,
+
 				description: categoryDocument?.description,
 
 				hidden: categoryDocument?.frontmatter.sidebar?.hidden,

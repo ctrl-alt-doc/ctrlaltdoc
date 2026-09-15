@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import { renderMarkdown } from './markdown.js';
 import { readContentDirectory, readContentFile } from './content-source.js';
 
-import type { DocCard, Document, DocumentFrontmatter } from './types.js';
+import type { Badge, DocCard, Document, DocumentFrontmatter } from './types.js';
 import type { ContentManifest } from './content-source.js';
 
 const DOCS_PATH = 'docs';
@@ -15,6 +15,14 @@ type RuntimeConfig = {
 	icons?: Record<string, string>;
 	content?: ContentManifest;
 };
+
+function getBadge(value: unknown): Badge | undefined {
+	if (value === 'New' || value === 'Updated' || value === 'Beta') {
+		return value;
+	}
+
+	return undefined;
+}
 
 async function resolveDocumentPath(path: string, config: RuntimeConfig): Promise<string> {
 	const normalizedPath = path === '' ? 'index' : path;
@@ -77,7 +85,8 @@ export async function getDocCards(
 		cards.push({
 			title: data.title ?? 'Untitled',
 			description: data.description ?? '',
-			slug
+			slug,
+			badge: getBadge(data.sidebar?.badge)
 		});
 	}
 

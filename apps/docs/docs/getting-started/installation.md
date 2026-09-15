@@ -8,6 +8,12 @@ sidebar:
 
 # Installation
 
+## Update notifications
+
+When you start the development server, ctrl alt doc checks at most once every 24 hours for a newer package version. If an update is available, the terminal displays the appropriate update command for your package manager.
+
+The check is skipped during CI, never runs during production builds, and does not delay or prevent the development server from starting. To disable it, set `CTRL_ALT_DOC_DISABLE_UPDATE_CHECK=1` in your environment.
+
 Getting a documentation site running should be straightforward.
 
 ## Install

@@ -62,7 +62,7 @@ becomes:
 
 A category can have an `_category.yml` file.
 
-This can be used to configure things such as its label, position, and collapsed state.
+This can be used to configure things such as its label, position, collapsed state, and sidebar badge.
 
 Example:
 
@@ -70,6 +70,7 @@ Example:
 label: Getting Started
 position: 1
 collapsed: false
+badge: Beta
 ```
 
 ## Sidebar configuration

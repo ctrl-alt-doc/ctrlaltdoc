@@ -15,6 +15,10 @@ Add a `:::doc-cards` block to a category index page.
 
 The block is automatically populated from the documentation pages belonging to that category.
 
+On the homepage, directories are included when they contain an `index.md` document. That document supplies the card title, description, and destination.
+
+If a page defines a `sidebar.badge` value in its frontmatter, the same badge appears on its documentation card. Supported values are `New`, `Updated`, and `Beta`.
+
 ## Example
 
 The [Reference](/reference) category uses documentation cards to present its child pages.

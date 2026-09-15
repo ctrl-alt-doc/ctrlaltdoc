@@ -110,7 +110,25 @@ function createToc(markdown: string): TocItem[] {
 	return headings;
 }
 
-function createRenderer(slug: string) {
+function isExternalLink(href: string): boolean {
+	return /^(https?:)?\/\//.test(href);
+}
+
+function renderExternalLinkIcon(customIcons: Record<string, string> = {}): string {
+	return `<svg
+		class="external-link-icon"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		aria-hidden="true"
+		focusable="false"
+	>${resolveIcon('external-link', customIcons)}</svg>`;
+}
+
+function createRenderer(slug: string, customIcons: Record<string, string> = {}) {
 	const renderer = new marked.Renderer();
 
 	const headingIds = new Map<string, number>();
@@ -161,10 +179,21 @@ function createRenderer(slug: string) {
 			.join('');
 
 		const titleAttribute = title ? ` title="${escapeHtml(title)}"` : '';
+		const external = isExternalLink(href);
+
+		if (external) {
+			return `
+				<a
+					class="external-link"
+					href="${escapeHtml(href)}"
+					${titleAttribute}
+					target="_blank"
+					rel="noopener noreferrer"
+				>${text}${renderExternalLinkIcon(customIcons)}</a>
+			`;
+		}
 
 		if (
-			href.startsWith('http://') ||
-			href.startsWith('https://') ||
 			href.startsWith('#') ||
 			href.includes(':')
 		) {
@@ -299,7 +328,7 @@ export async function renderMarkdown(
 	content: string;
 	toc: TocItem[];
 }> {
-	const renderer = createRenderer(options.slug);
+	const renderer = createRenderer(options.slug, options.icons);
 	const extractedDocCards = extractDocCards(markdown);
 	const extractedCards = extractCards(extractedDocCards.markdown);
 	const extractedDownloads = extractDownloads(extractedCards.markdown);
@@ -354,13 +383,17 @@ export async function renderMarkdown(
 		const cards = options.docCards ?? [];
 
 		const renderedCards = cards
-			.map(
-				(card) => `
+			.map((card) => {
+				const badgeClass = card.badge ? `badge-${card.badge.toLowerCase()}` : '';
+
+				return `
 					<a
 						class="doc-card"
 						href="/${escapeHtml(card.slug)}"
 					>
 						<div class="doc-card-content">
+							${card.badge ? `<span class="doc-card-badge ${badgeClass}">${escapeHtml(card.badge)}</span>` : ''}
+
 							<h3 class="doc-card-title">
 								${escapeHtml(card.title)}
 							</h3>
@@ -394,8 +427,8 @@ export async function renderMarkdown(
 	</svg>
 </span>
 					</a>
-				`
-			)
+				`;
+			})
 			.join('\n');
 
 		const docCards = `
@@ -416,11 +449,14 @@ export async function renderMarkdown(
 		const cards: CardDefinition[] = JSON.parse(extractedCards.cards[index]);
 
 		const renderedCards = cards
-			.map(
-				(card) => `
+			.map((card) => {
+				const external = isExternalLink(card.href);
+
+				return `
 				<a
 					class="card"
 					href="${escapeHtml(card.href)}"
+					${external ? 'target="_blank" rel="noopener noreferrer"' : ''}
 				>
 					<div class="card-content">
 						<h3 class="card-title">
@@ -452,12 +488,12 @@ export async function renderMarkdown(
 							aria-hidden="true"
 							focusable="false"
 						>
-							${resolveIcon('chevron-right', options.icons)}
+							${resolveIcon(external ? 'external-link' : 'chevron-right', options.icons)}
 						</svg>
 					</span>
 				</a>
-			`
-			)
+			`;
+			})
 			.join('\n');
 
 		const cardsMarkup = `
