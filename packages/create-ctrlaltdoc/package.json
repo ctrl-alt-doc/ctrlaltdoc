@@ -1,11 +1,11 @@
 {
 	"name": "create-ctrlaltdoc",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"license": "MIT",
 	"description": "Create a ctrl alt doc project.",
 	"type": "module",
 	"bin": {
-		"create-ctrlaltdoc": "./dist/index.js"
+		"create-ctrlaltdoc": "dist/index.js"
 	},
 	"scripts": {
 		"build": "tsc"
