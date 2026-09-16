@@ -3,8 +3,6 @@ title: Downloads
 description: Add downloadable resources to your documentation.
 ---
 
-# Downloads
-
 Downloads provide a visual way to present files and other downloadable resources.
 
 A downloads group starts with `:::downloads`. Each entry uses `:::download[Title](URL)`.

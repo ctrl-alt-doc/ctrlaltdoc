@@ -3,8 +3,6 @@ title: Documentation Cards
 description: Automatically generate cards from documentation pages.
 ---
 
-# Documentation cards
-
 Documentation cards automatically generate a group of cards from the documentation structure.
 
 They are particularly useful on category index pages, where you want the available pages to be displayed without maintaining a separate list.

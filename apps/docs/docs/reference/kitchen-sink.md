@@ -3,8 +3,6 @@ title: Kitchen Sink
 description: A showcase of the documentation features built into ctrl alt doc.
 ---
 
-# Kitchen Sink
-
 This page brings together the features built into ctrl alt doc.
 
 The individual Reference pages explain how each feature works. This page is simply a place to see everything working together.

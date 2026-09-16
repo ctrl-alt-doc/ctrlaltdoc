@@ -224,9 +224,10 @@
 				</nav>
 			{/if}
 
-			<p class="eyebrow">Documentation</p>
 		</header>
+		<h1>{document.title}</h1>
 
+		<p class="lead">{document.description}</p>
 		<div class="divider"></div>
 
 	<div class="content">

@@ -3,8 +3,6 @@ title: Cards
 description: Group related links into visual cards.
 ---
 
-# Cards
-
 Cards provide a visual way to group related links.
 
 A cards group starts with `:::cards`. Each card uses the form `:::card[Title](URL)`.

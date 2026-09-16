@@ -3,8 +3,6 @@ title: Figures
 description: Display images with captions.
 ---
 
-# Figures
-
 Figures combine an image with an optional caption.
 
 Use `:::figure[Caption]` around a standard Markdown image.

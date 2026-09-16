@@ -3,9 +3,25 @@ title: Steps
 description: Present a process as a clear, numbered sequence.
 ---
 
-# Steps
-
 Use the `steps` block when readers need to complete a task in order.
+
+```
+:::steps
+
+1. **Install the package**
+
+   Add ctrl alt doc to your SvelteKit project.
+
+2. **Create your content**
+
+   Add Markdown files to the `docs/` directory.
+
+3. **Start the site**
+
+   Run the development server and open the generated URL.
+   :::
+```
+Which will render as:
 
 :::steps
 

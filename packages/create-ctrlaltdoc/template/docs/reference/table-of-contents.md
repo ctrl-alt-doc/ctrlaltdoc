@@ -1,9 +1,7 @@
 ---
 title: Table of Contents
-description: Automatically generate a table of contents from document headings.
+description: Automatically generate a table of contents from document headings in your pages.
 ---
-
-# Table of contents
 
 ctrl alt doc automatically generates a table of contents from the headings in each document.
 

@@ -3,8 +3,6 @@ title: Callouts
 description: Highlight important information with configurable callout blocks.
 ---
 
-# Callouts
-
 Callouts highlight information that deserves attention without interrupting the main flow of the document.
 
 ctrl alt doc provides four built-in callout types:

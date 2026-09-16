@@ -6,8 +6,6 @@ sidebar:
   badge: Updated
 ---
 
-# Installation
-
 ## Update notifications
 
 When you start the development server, ctrl alt doc checks at most once every 24 hours for a newer package version. If an update is available, the terminal displays the appropriate update command for your package manager.
@@ -43,11 +41,11 @@ npm install ctrl-alt-doc
 A minimal configuration looks like this:
 
 ```ts
-import { defineConfig } from "ctrl-alt-doc";
+import { defineConfig } from 'ctrl-alt-doc';
 
 export default defineConfig({
-  title: "My Documentation",
-  description: "Documentation for my project.",
+	title: 'My Documentation',
+	description: 'Documentation for my project.'
 });
 ```
 

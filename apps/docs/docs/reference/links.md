@@ -3,8 +3,6 @@ title: Links
 description: Link between documentation pages and external resources.
 ---
 
-# Links
-
 External web links open in a new tab and display an external-link icon. Internal links and links to headings remain in the current tab.
 
 Markdown links can point to pages within your documentation or to external websites.

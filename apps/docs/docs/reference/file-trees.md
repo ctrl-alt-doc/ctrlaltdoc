@@ -3,8 +3,6 @@ title: File Trees
 description: Show project and directory structures visually.
 ---
 
-# File trees
-
 File trees provide a compact way to document the structure of a project or directory.
 
 Use `:::file-tree` followed by an indented list.

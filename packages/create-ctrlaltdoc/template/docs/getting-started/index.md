@@ -6,8 +6,6 @@ sidebar:
   badge: New
 ---
 
-# Getting Started
-
 Everything you need to get a documentation site running.
 
 ## Start here

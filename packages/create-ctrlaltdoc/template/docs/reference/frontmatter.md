@@ -3,8 +3,6 @@ title: Frontmatter
 description: Configure document metadata and navigation behaviour.
 ---
 
-# Frontmatter
-
 Frontmatter is YAML placed at the beginning of a Markdown document.
 
 It defines metadata that ctrl alt doc uses when rendering and organising the document.

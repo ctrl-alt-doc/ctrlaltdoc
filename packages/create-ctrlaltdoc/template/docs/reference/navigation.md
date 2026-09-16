@@ -3,8 +3,6 @@ title: Navigation
 description: Organise documentation into pages and categories.
 ---
 
-# Navigation
-
 ctrl alt doc builds navigation from the structure of your `docs/` directory.
 
 Directories become categories, while Markdown files become documentation pages.

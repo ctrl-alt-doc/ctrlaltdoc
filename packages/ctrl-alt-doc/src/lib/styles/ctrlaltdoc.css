@@ -511,7 +511,6 @@
 .document-header {
 	margin-bottom: 48px;
 }
-
 .document .eyebrow {
 	margin: 0 0 12px;
 
@@ -545,9 +544,9 @@
 
 .document .lead {
 	max-width: 680px;
-	margin: 20px 0 0;
+	margin: 20px 0 23;
 
-	color: var(--text-muted);
+	color: var(--text-subtle);
 
 	font-size: 1.1rem;
 	line-height: 1.7;

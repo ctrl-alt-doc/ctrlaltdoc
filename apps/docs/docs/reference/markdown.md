@@ -3,8 +3,6 @@ title: Markdown
 description: Write documentation with standard Markdown.
 ---
 
-# Markdown
-
 ctrl alt doc uses Markdown for your documentation.
 
 You can use standard Markdown for headings, paragraphs, emphasis, lists, links, tables, blockquotes, images, and more.

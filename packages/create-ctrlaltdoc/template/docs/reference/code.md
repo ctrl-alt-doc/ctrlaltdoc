@@ -3,8 +3,6 @@ title: Code
 description: Add syntax-highlighted and copyable code blocks to your documentation.
 ---
 
-# Code
-
 Code blocks are a core part of technical documentation.
 
 ctrl alt doc supports fenced Markdown code blocks with syntax highlighting.

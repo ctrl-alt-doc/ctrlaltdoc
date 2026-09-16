@@ -6,8 +6,6 @@ sidebar:
   badge: Updated
 ---
 
-# Installation
-
 ## Update notifications
 
 When you start the development server, ctrl alt doc checks at most once every 24 hours for a newer package version. If an update is available, the terminal displays the appropriate update command for your package manager.

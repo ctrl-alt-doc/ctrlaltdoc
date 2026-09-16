@@ -3,8 +3,6 @@ title: Kitchen Sink
 description: A showcase of the documentation features built into ctrl alt doc.
 ---
 
-# Kitchen Sink
-
 This page brings together the features built into ctrl alt doc.
 
 The individual Reference pages explain how each feature works. This page is simply a place to see everything working together.
@@ -24,6 +22,8 @@ You can use **bold text**, _italic text_, `inline code`, [internal links](/getti
 1. First item
 2. Second item
 3. Third item
+
+## Blockquotes
 
 > Documentation, without the baggage.
 
