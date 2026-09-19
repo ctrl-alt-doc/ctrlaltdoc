@@ -1,5 +1,11 @@
 # ctrl alt doc
 
+[![npm version](https://img.shields.io/npm/v/ctrl-alt-doc?logo=npm&logoColor=white)](https://www.npmjs.com/package/ctrl-alt-doc)
+[![create-ctrlaltdoc version](https://img.shields.io/npm/v/create-ctrlaltdoc?logo=npm&logoColor=white)](https://www.npmjs.com/package/create-ctrlaltdoc)
+[![npm downloads](https://img.shields.io/npm/dm/ctrl-alt-doc?logo=npm&logoColor=white)](https://www.npmjs.com/package/ctrl-alt-doc)
+[![GitHub release](https://img.shields.io/github/v/release/ctrl-alt-doc/ctrlaltdoc?display_name=tag&logo=github)](https://github.com/ctrl-alt-doc/ctrlaltdoc/releases)
+[![License](https://img.shields.io/github/license/ctrl-alt-doc/ctrlaltdoc)](LICENSE)
+
 **Documentation, without the baggage.**
 
 ctrl alt doc is an open-source documentation framework built with Markdown, Svelte, and Vite.
