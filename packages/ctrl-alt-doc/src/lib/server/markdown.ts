@@ -252,10 +252,21 @@ function createRenderer(slug: string, customIcons: Record<string, string> = {}) 
 	renderer.tablecell = ({ text, header, align }) => {
 		const tag = header ? 'th' : 'td';
 		const alignment = header ? 'center' : (align ?? 'left');
+		const componentPlaceholder = /<!--CAD_SVELTE_COMPONENT_\d+-->/g;
+		let inlineContent = '';
+		let lastIndex = 0;
+
+		for (const match of text.matchAll(componentPlaceholder)) {
+			inlineContent += marked.parseInline(text.slice(lastIndex, match.index));
+			inlineContent += match[0];
+			lastIndex = (match.index ?? 0) + match[0].length;
+		}
+
+		inlineContent += marked.parseInline(text.slice(lastIndex));
 
 		return `
 			<${tag} style="text-align: ${alignment};">
-				${marked.parseInline(text)}
+				${inlineContent}
 			</${tag}>
 		`;
 	};
