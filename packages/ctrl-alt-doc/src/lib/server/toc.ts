@@ -13,8 +13,18 @@ function slugify(value: string): string {
 		.replace(/-+/g, '-');
 }
 
+function createHeadingId(text: string, usedIds: Map<string, number>): string {
+	const base = slugify(text);
+	const count = usedIds.get(base) ?? 0;
+
+	usedIds.set(base, count + 1);
+
+	return count === 0 ? base : `${base}-${count + 1}`;
+}
+
 export function createTableOfContents(markdown: string): TocItem[] {
 	const headings: TocItem[] = [];
+	const usedIds = new Map<string, number>();
 
 	const lines = markdown.split('\n');
 
@@ -30,7 +40,7 @@ export function createTableOfContents(markdown: string): TocItem[] {
 		const title = match[2].replace(/[*_`]/g, '').trim();
 
 		headings.push({
-			id: slugify(title),
+			id: createHeadingId(title, usedIds),
 			title,
 			level
 		});
