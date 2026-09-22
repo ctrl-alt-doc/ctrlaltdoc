@@ -1,10 +1,11 @@
 # ctrl alt doc
 
-[![npm version](https://img.shields.io/npm/v/ctrl-alt-doc?logo=npm&logoColor=white)](https://www.npmjs.com/package/ctrl-alt-doc)
-[![create-ctrlaltdoc version](https://img.shields.io/npm/v/create-ctrlaltdoc?logo=npm&logoColor=white)](https://www.npmjs.com/package/create-ctrlaltdoc)
-[![npm downloads](https://img.shields.io/npm/dm/ctrl-alt-doc?logo=npm&logoColor=white)](https://www.npmjs.com/package/ctrl-alt-doc)
-[![GitHub release](https://img.shields.io/github/v/release/ctrl-alt-doc/ctrlaltdoc?display_name=tag&logo=github)](https://github.com/ctrl-alt-doc/ctrlaltdoc/releases)
-[![License](https://img.shields.io/github/license/ctrl-alt-doc/ctrlaltdoc)](LICENSE)
+[![npm](https://img.shields.io/npm/v/ctrl-alt-doc?style=flat-square&color=ce0985&labelColor=212121&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIj48ZyBzdHJva2Utd2lkdGg9IjIuNCI+PHBhdGggZD0iTTUuNiAzLjRINGEyIDIgMCAwIDAtMiAydjEzLjJhMiAyIDAgMCAwIDIgMmgxLjYiLz48cGF0aCBkPSJNMjAuNCAzLjRIMjJhMiAyIDAgMCAxIDIgMnYxMy4yYTIgMiAwIDAgMS0yIDJoLTEuNiIvPjxjaXJjbGUgY3g9IjExLjIiIGN5PSIxNCIgcj0iMy4zIi8+PHBhdGggZD0iTTE0LjUgMTAuN3Y2LjYiLz48L2c+PHBhdGggZD0iTTE4LjQgOS42aDEuNHY4LjhoLTEuNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0ibm9uZSIvPjwvc3ZnPg==)](https://www.npmjs.com/package/ctrl-alt-doc)
+[![downloads](https://img.shields.io/npm/dm/ctrl-alt-doc?style=flat-square&color=be0078&labelColor=212121&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIj48ZyBzdHJva2Utd2lkdGg9IjIuNCI+PHBhdGggZD0iTTUuNiAzLjRINGEyIDIgMCAwIDAtMiAydjEzLjJhMiAyIDAgMCAwIDIgMmgxLjYiLz48cGF0aCBkPSJNMjAuNCAzLjRIMjJhMiAyIDAgMCAxIDIgMnYxMy4yYTIgMiAwIDAgMS0yIDJoLTEuNiIvPjxjaXJjbGUgY3g9IjExLjIiIGN5PSIxNCIgcj0iMy4zIi8+PHBhdGggZD0iTTE0LjUgMTAuN3Y2LjYiLz48L2c+PHBhdGggZD0iTTE4LjQgOS42aDEuNHY4LjhoLTEuNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0ibm9uZSIvPjwvc3ZnPg==)](https://www.npmjs.com/package/ctrl-alt-doc)
+[![docs](https://img.shields.io/badge/docs-ctrl_alt_doc-ce0985?style=flat-square&labelColor=212121&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIj48ZyBzdHJva2Utd2lkdGg9IjIuNCI+PHBhdGggZD0iTTUuNiAzLjRINGEyIDIgMCAwIDAtMiAydjEzLjJhMiAyIDAgMCAwIDIgMmgxLjYiLz48cGF0aCBkPSJNMjAuNCAzLjRIMjJhMiAyIDAgMCAxIDIgMnYxMy4yYTIgMiAwIDAgMS0yIDJoLTEuNiIvPjxjaXJjbGUgY3g9IjExLjIiIGN5PSIxNCIgcj0iMy4zIi8+PHBhdGggZD0iTTE0LjUgMTAuN3Y2LjYiLz48L2c+PHBhdGggZD0iTTE4LjQgOS42aDEuNHY4LjhoLTEuNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0ibm9uZSIvPjwvc3ZnPg==)](https://docs.ctrlaltdoc.cc)
+[![license](https://img.shields.io/npm/l/ctrl-alt-doc?style=flat-square&color=7f7f7f&labelColor=212121)](LICENSE)
+[![Discord](https://img.shields.io/discord/1541521626137370698?style=flat-square&color=ce0985&labelColor=212121&logo=discord&logoColor=white)](https://discord.gg/f6XemeeUpD)
+
 
 **Documentation, without the baggage.**
 
