@@ -18,7 +18,9 @@ export async function GET({ url }) {
 			title: document.title,
 			description: document.description,
 			excerpt: document.excerpt,
-			slug: document.slug
+			slug: document.slug,
+			toc: document.toc,
+			content: document.content
 		});
 	} catch {
 		error(404, 'Document not found');
