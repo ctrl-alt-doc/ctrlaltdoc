@@ -88,7 +88,12 @@
 	background: color-mix(in srgb, var(--gray-1) 92%, transparent);
 	backdrop-filter: blur(12px);
 }
-
+.site-header .brand-logo {
+	width: auto;
+	height: 35px;
+	max-width: 190px;
+	object-fit: contain;
+}
 .header-start {
 	display: flex;
 	align-items: center;
@@ -742,8 +747,6 @@
 
 	border: 1px solid var(--border-subtle);
 	border-radius: var(--radius-md);
-
-	box-shadow: var(--shadow-sm);
 }
 
 .content figure {
@@ -1961,6 +1964,7 @@
 
 	margin-top: 56px;
 	padding-top: 24px;
+	padding-bottom: 10px;
 
 	border-top: 1px solid var(--border-subtle);
 }

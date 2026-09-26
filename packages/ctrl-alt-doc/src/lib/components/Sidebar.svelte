@@ -34,7 +34,16 @@
 	<li>
 		{#if item.type === 'category'}
 			<div class:active={isActive} class="sidebar-category">
-				<a href={resolve(`/${item.slug}`)}>
+				<a
+					href={resolve(`/${item.slug}`)}
+					aria-expanded={item.children?.length ? isExpanded(item) : undefined}
+					onclick={(event) => {
+						if (item.children?.length) {
+							event.preventDefault();
+							toggleCategory(item.slug);
+						}
+					}}
+				>
 					{item.title}
 
 					{#if item.badge}
