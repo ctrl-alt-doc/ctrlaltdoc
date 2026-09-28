@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-	deploy:
+  deploy:
     name: Deploy docs to Cloudflare Workers
     runs-on: ubuntu-latest
     permissions:
