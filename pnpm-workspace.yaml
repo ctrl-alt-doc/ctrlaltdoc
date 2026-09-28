@@ -3,3 +3,5 @@ packages:
   - packages/*
 allowBuilds:
   '@hugeicons/svelte': true
+  esbuild: true
+  workerd: true

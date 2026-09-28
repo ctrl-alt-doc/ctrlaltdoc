@@ -120,6 +120,16 @@ Read the [ctrl alt doc documentation](https://ctrlaltdoc.cc) for the complete fe
 
 The documentation includes installation, Markdown, frontmatter, navigation, search, code blocks, callouts, cards, details, downloads, figures, file trees, steps, tabs, user-authored Svelte components, and built-in icons.
 
+## Deploy the documentation site
+
+The repository's documentation site is configured for Cloudflare Workers. From the repository root:
+
+```bash
+pnpm --dir apps/docs run deploy
+```
+
+The deployment uses the Cloudflare account selected by Wrangler and publishes the `ctrlaltdoc-docs` Worker. The `main` branch workflow deploys automatically when the repository has `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` Actions secrets configured.
+
 ## Packages
 
 - [`ctrl-alt-doc`](https://www.npmjs.com/package/ctrl-alt-doc) — the documentation framework
