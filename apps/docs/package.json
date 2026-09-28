@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"deploy": "vite build && wrangler deploy",
+		"deploy": "pnpm --filter ctrl-alt-doc build && vite build && wrangler deploy",
 		"preview:cloudflare": "vite build && wrangler dev",
 		"cf-typegen": "wrangler types",
 		"preview": "vite preview",
