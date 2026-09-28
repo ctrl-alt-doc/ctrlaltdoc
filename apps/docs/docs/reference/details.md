@@ -1,6 +1,7 @@
 ---
 title: Details
 description: Hide supporting information inside expandable details blocks.
+keywords: [collapsible, collapse, accordion, spoiler, toggle]
 ---
 
 Details blocks let you hide supporting information until a reader chooses to reveal it.

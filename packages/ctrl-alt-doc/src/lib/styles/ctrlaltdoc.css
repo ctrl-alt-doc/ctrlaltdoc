@@ -1846,6 +1846,12 @@
 	color: var(--accent-text);
 }
 
+.result-heading {
+	color: var(--text-subtle);
+
+	font-weight: 400;
+}
+
 .result-description {
 	width: 100%;
 	overflow: hidden;

@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-The project creator asks for your documentation site title and optional GitHub repository URL, then writes those values into `ctrlaltdoc.config.ts`.
+The project creator asks for your documentation site title and an optional GitHub URL. The URL is used for the generated site's GitHub navbar link and is written into `ctrlaltdoc.config.ts`.
 
 Open the local URL shown in the terminal. Your documentation lives in the `docs/` directory.
 
@@ -38,6 +38,8 @@ Open the local URL shown in the terminal. Your documentation lives in the `docs/
 - Build-time content bundling for serverless and edge deployments
 - A complete example documentation set in every new project
 
+Mermaid diagrams and an “Edit this page on GitHub” link are planned features. They are not available in the current release.
+
 Production builds embed Markdown and category metadata in the server bundle. Hosts such as
 Cloudflare Workers do not need filesystem access to the source `docs/` directory at runtime.
 Applications created before this behavior was introduced should update `src/lib/server/site.ts`:
@@ -51,9 +53,28 @@ export function getSiteConfig() {
 }
 ```
 
-## Customise your site
+## Configure your site
 
-Edit `ctrlaltdoc.config.ts` to customise the title, description, theme, navigation, social links, footer, callouts, and icons.
+Edit `ctrlaltdoc.config.ts` to customise the title, description, sidebar theme, social links, footer, callouts, and icons.
+
+```ts
+import { defineConfig } from 'ctrl-alt-doc';
+
+export default defineConfig({
+	title: 'My Documentation',
+	description: 'Documentation for my project.',
+	theme: {
+		sidebar: true
+	},
+	navbar: {
+		socials: {
+			github: 'https://github.com/owner/project'
+		}
+	}
+});
+```
+
+Put Markdown pages in `docs/`. A root `docs/index.md` page is required. Directories become navigation categories, `index.md` files become category landing pages, and `_category.yml` files can control category labels, order, collapsed state, visibility, and badges. Page-specific metadata belongs in YAML frontmatter.
 
 For user-authored Svelte components, install the component package in your project and import it directly into a Markdown page:
 
@@ -69,9 +90,35 @@ npm install @iconify-svelte/heroicons
 <AcademicCapIcon height="1em" />
 ```
 
+## Integration API
+
+Sites expose a small JSON API under `/api` for integrations such as [ctrlaltbot](https://github.com/ctrl-alt-doc/ctrlaltbot), the Discord bot:
+
+| Endpoint | Returns |
+| --- | --- |
+| `GET /api/search?q=<query>` | Ranked results, with the best-matching heading when one fits better than the title. |
+| `GET /api/suggest?q=<text>&kind=page` | Page titles for autocomplete. `kind=category` returns categories. |
+| `GET /api/page?slug=<slug>` | Page metadata, table of contents, rendered HTML, and Markdown source. |
+| `GET /api/list?category=<slug>` | The pages directly inside a category. |
+
+The handlers ship in the `ctrl-alt-doc` package, and each route file in a site re-exports one of them, so updating the package updates the API:
+
+```ts
+// src/routes/api/search/+server.ts
+import { searchEndpoint } from 'ctrl-alt-doc/api';
+
+import { getSiteConfig } from '$lib/server/site';
+
+export const GET = searchEndpoint(getSiteConfig);
+```
+
+Sites created before the handlers moved into the package have their own copies of these routes. Replace each `src/routes/api/<name>/+server.ts` with the equivalent re-export, using `searchEndpoint`, `suggestEndpoint`, `pageEndpoint`, or `listEndpoint`. This is only needed once.
+
 ## Documentation
 
 Read the [ctrl alt doc documentation](https://ctrlaltdoc.cc) for the complete feature reference.
+
+The documentation includes installation, Markdown, frontmatter, navigation, search, code blocks, callouts, cards, details, downloads, figures, file trees, steps, tabs, user-authored Svelte components, and built-in icons.
 
 ## Packages
 

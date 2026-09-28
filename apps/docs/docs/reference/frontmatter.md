@@ -18,6 +18,19 @@ description: Install ctrl alt doc and create your first documentation project.
 ---
 ```
 
+## Search keywords
+
+`keywords` adds extra terms that search should match, such as synonyms that do not appear in the page text:
+
+```yaml
+---
+title: Callouts
+keywords: [admonition, notice, warning box]
+---
+```
+
+Search matches individual words rather than the exact phrase, so questions such as "how do I add a warning box" find this page. Keywords rank above body text but below titles and headings.
+
 ## Sidebar configuration
 
 Sidebar behaviour can be controlled through the `sidebar` object.

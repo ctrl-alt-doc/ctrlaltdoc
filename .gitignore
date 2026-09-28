@@ -10,3 +10,5 @@ build/
 # Generated package output
 packages/ctrl-alt-doc/dist/
 packages/create-ctrlaltdoc/dist/
+PRODUCTION-DOCS-HANDOFF.md
+Agents.md

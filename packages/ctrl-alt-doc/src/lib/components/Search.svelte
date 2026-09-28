@@ -7,6 +7,7 @@
 		description: string;
 		slug: string;
 		excerpt: string;
+		heading?: { id: string; title: string };
 	};
 
 	let { title = 'documentation' } = $props();
@@ -77,7 +78,9 @@
 
 		closeSearch();
 
-		goto(resolve(`/${result.slug}` as `/${string}`));
+		const hash = result.heading ? `#${result.heading.id}` : '';
+
+		goto(`${resolve(`/${result.slug}` as `/${string}`)}${hash}`);
 	}
 
 	function isEditable(target: EventTarget | null): boolean {
@@ -205,6 +208,9 @@
 						>
 							<span class="result-title">
 								{result.title}
+								{#if result.heading}
+									<span class="result-heading">› {result.heading.title}</span>
+								{/if}
 							</span>
 
 							{#if result.description}

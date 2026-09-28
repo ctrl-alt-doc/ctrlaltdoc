@@ -19,6 +19,7 @@
 		"src/svelte.d.ts",
 		"src/vite.ts",
 		"src/server.ts",
+		"src/api.ts",
 		"src/components.ts",
 		"src/lib/server/**/*.ts",
 		"src/lib/icons/definitions.ts",

@@ -1,0 +1,11 @@
+# Opens a pull request when a new version of ctrl alt doc is published.
+# The site's API routes come from the package, so updates also keep
+# integrations such as ctrlaltbot current.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: ctrl-alt-doc

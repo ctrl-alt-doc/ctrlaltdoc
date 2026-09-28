@@ -23,6 +23,7 @@ export interface DocumentFrontmatter {
 	title: string;
 	description?: string;
 	excerpt?: string;
+	keywords?: string | string[];
 	sidebar?: SidebarConfig;
 	draft?: boolean;
 	toc?: boolean;
@@ -61,6 +62,17 @@ export interface SearchResult {
 	description: string;
 	slug: string;
 	excerpt: string;
+	heading?: SearchResultHeading;
+}
+
+export interface SearchResultHeading {
+	id: string;
+	title: string;
+}
+
+export interface SuggestionResult {
+	title: string;
+	slug: string;
 }
 
 export interface BreadcrumbItem {

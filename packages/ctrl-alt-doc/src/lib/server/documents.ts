@@ -104,6 +104,7 @@ export async function getDocument(path: string, config: RuntimeConfig): Promise<
 		title: data.title ?? 'Untitled',
 		description: data.description ?? '',
 		excerpt: data.excerpt ?? '',
+		keywords: data.keywords,
 		sidebar: data.sidebar,
 		draft: data.draft ?? false,
 		toc: data.toc ?? true
