@@ -1,4 +1,13 @@
-# ctrl alt doc
+<p align="center">
+	<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/simongrieve/images/blob/567281165ddca0933f45e84aa5f947194ca662b3/doc-dark-mode-128.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/simongrieve/images/blob/567281165ddca0933f45e84aa5f947194ca662b3/doc-light-mode-128.png">
+  <img alt="Fallback image description" src="default-image.png">
+</picture>
+</p>
+
+<h2 align="center">Documentation, without the baggage.</h2>
+
 
 [![npm](https://img.shields.io/npm/v/ctrl-alt-doc?style=flat-square&color=ce0985&labelColor=212121&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIj48ZyBzdHJva2Utd2lkdGg9IjIuNCI+PHBhdGggZD0iTTUuNiAzLjRINGEyIDIgMCAwIDAtMiAydjEzLjJhMiAyIDAgMCAwIDIgMmgxLjYiLz48cGF0aCBkPSJNMjAuNCAzLjRIMjJhMiAyIDAgMCAxIDIgMnYxMy4yYTIgMiAwIDAgMS0yIDJoLTEuNiIvPjxjaXJjbGUgY3g9IjExLjIiIGN5PSIxNCIgcj0iMy4zIi8+PHBhdGggZD0iTTE0LjUgMTAuN3Y2LjYiLz48L2c+PHBhdGggZD0iTTE4LjQgOS42aDEuNHY4LjhoLTEuNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0ibm9uZSIvPjwvc3ZnPg==)](https://www.npmjs.com/package/ctrl-alt-doc)
 [![downloads](https://img.shields.io/npm/dm/ctrl-alt-doc?style=flat-square&color=be0078&labelColor=212121&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIj48ZyBzdHJva2Utd2lkdGg9IjIuNCI+PHBhdGggZD0iTTUuNiAzLjRINGEyIDIgMCAwIDAtMiAydjEzLjJhMiAyIDAgMCAwIDIgMmgxLjYiLz48cGF0aCBkPSJNMjAuNCAzLjRIMjJhMiAyIDAgMCAxIDIgMnYxMy4yYTIgMiAwIDAgMS0yIDJoLTEuNiIvPjxjaXJjbGUgY3g9IjExLjIiIGN5PSIxNCIgcj0iMy4zIi8+PHBhdGggZD0iTTE0LjUgMTAuN3Y2LjYiLz48L2c+PHBhdGggZD0iTTE4LjQgOS42aDEuNHY4LjhoLTEuNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0ibm9uZSIvPjwvc3ZnPg==)](https://www.npmjs.com/package/ctrl-alt-doc)
@@ -6,10 +15,7 @@
 [![license](https://img.shields.io/npm/l/ctrl-alt-doc?style=flat-square&color=7f7f7f&labelColor=212121)](LICENSE)
 [![Discord](https://img.shields.io/discord/1541521626137370698?style=flat-square&color=ce0985&labelColor=212121&logo=discord&logoColor=white)](https://discord.gg/f6XemeeUpD)
 
-
-**Documentation, without the baggage.**
-
-ctrl alt doc is an open-source documentation framework built with Markdown, Svelte, and Vite.
+**ctrl alt doc** is an open-source documentation framework built with Markdown, Svelte, and Vite.
 
 ## Create a documentation site
 
