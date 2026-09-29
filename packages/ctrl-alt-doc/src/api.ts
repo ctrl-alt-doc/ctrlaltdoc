@@ -8,6 +8,7 @@
 //
 //   export const GET = searchEndpoint(getSiteConfig);
 
+import { createBreadcrumbs } from './lib/server/breadcrumbs.js';
 import { getDocument } from './lib/server/documents.js';
 import { getNavigation } from './lib/server/navigation.js';
 import { searchDocuments, suggestDocuments } from './lib/server/search.js';
@@ -29,6 +30,15 @@ function errorResponse(status: number, message: string): Response {
 	return Response.json({ message }, { status });
 }
 
+/** The page's section and ancestor titles, for integrations that show where a page lives. */
+function location(navigation: NavigationItem[], slug: string): { section?: string; breadcrumb: string[] } {
+	// createBreadcrumbs() ends with the page itself, which is not part of its location.
+	const ancestors = createBreadcrumbs(navigation, slug).slice(0, -1);
+	const section = ancestors[0]?.title;
+
+	return { ...(section ? { section } : {}), breadcrumb: ancestors.map((item) => item.title) };
+}
+
 function findCategories(items: NavigationItem[]): NavigationItem[] {
 	return items.flatMap((item) => [
 		...(item.type === 'category' ? [item] : []),
@@ -36,9 +46,17 @@ function findCategories(items: NavigationItem[]): NavigationItem[] {
 	]);
 }
 
-/** `GET /api/search?q=<query>`: ranked search results. */
+/** `GET /api/search?q=<query>`: ranked search results with each page's location. */
 export function searchEndpoint(getConfig: () => ApiConfig): ApiHandler {
-	return async ({ url }) => Response.json(await searchDocuments(url.searchParams.get('q') ?? '', getConfig()));
+	return async ({ url }) => {
+		const config = getConfig();
+		const [results, navigation] = await Promise.all([
+			searchDocuments(url.searchParams.get('q') ?? '', config),
+			getNavigation(config)
+		]);
+
+		return Response.json(results.map((result) => ({ ...result, ...location(navigation, result.slug) })));
+	};
 }
 
 /** `GET /api/suggest?q=<text>&kind=page|category`: titles for autocomplete. */
@@ -62,7 +80,7 @@ export function suggestEndpoint(getConfig: () => ApiConfig): ApiHandler {
 	};
 }
 
-/** `GET /api/page?slug=<slug>`: one page's metadata, table of contents, HTML, and Markdown source. */
+/** `GET /api/page?slug=<slug>`: one page's metadata, location, table of contents, HTML, and Markdown source. */
 export function pageEndpoint(getConfig: () => ApiConfig): ApiHandler {
 	return async ({ url }) => {
 		const slug = url.searchParams.get('slug')?.trim() ?? '';
@@ -71,10 +89,11 @@ export function pageEndpoint(getConfig: () => ApiConfig): ApiHandler {
 			return errorResponse(400, 'A page slug is required');
 		}
 
+		const config = getConfig();
 		let document;
 
 		try {
-			document = await getDocument(slug, getConfig());
+			document = await getDocument(slug, config);
 		} catch {
 			return errorResponse(404, 'Document not found');
 		}
@@ -84,6 +103,7 @@ export function pageEndpoint(getConfig: () => ApiConfig): ApiHandler {
 			description: document.description,
 			excerpt: document.excerpt,
 			slug: document.slug,
+			...location(await getNavigation(config), document.slug),
 			toc: document.toc,
 			content: document.content,
 			markdown: document.source

@@ -27,6 +27,19 @@ test('page returns metadata, table of contents, HTML, and Markdown', async () =>
 	assert.match(body.markdown, /^## Boiling an egg/m);
 });
 
+test('page and search include where the page lives', async () => {
+	const page = await call(pageEndpoint, '/api/page?slug=cooking/eggs');
+	assert.equal(page.body.section, 'Cooking');
+	assert.deepEqual(page.body.breadcrumb, ['Cooking']);
+
+	const search = await call(searchEndpoint, '/api/search?q=eggs');
+	assert.equal(search.body[0].section, 'Cooking');
+	assert.deepEqual(search.body[0].breadcrumb, ['Cooking']);
+
+	const home = await call(pageEndpoint, '/api/page?slug=cooking');
+	assert.deepEqual(home.body.breadcrumb, [], 'a category page has no ancestors of its own');
+});
+
 test('page reports missing slugs and pages', async () => {
 	assert.equal((await call(pageEndpoint, '/api/page')).status, 400);
 	assert.equal((await call(pageEndpoint, '/api/page?slug=missing')).status, 404);

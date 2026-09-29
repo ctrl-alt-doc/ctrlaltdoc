@@ -96,9 +96,9 @@ Sites expose a small JSON API under `/api` for integrations such as [ctrlaltbot]
 
 | Endpoint | Returns |
 | --- | --- |
-| `GET /api/search?q=<query>` | Ranked results, with the best-matching heading when one fits better than the title. |
+| `GET /api/search?q=<query>` | Ranked results with each page's `section` and `breadcrumb`, and the best-matching heading when one fits better than the title. |
 | `GET /api/suggest?q=<text>&kind=page` | Page titles for autocomplete. `kind=category` returns categories. |
-| `GET /api/page?slug=<slug>` | Page metadata, table of contents, rendered HTML, and Markdown source. |
+| `GET /api/page?slug=<slug>` | Page metadata, `section` and `breadcrumb`, table of contents, rendered HTML (`content`), and Markdown source (`markdown`). |
 | `GET /api/list?category=<slug>` | The pages directly inside a category. |
 
 The handlers ship in the `ctrl-alt-doc` package, and each route file in a site re-exports one of them, so updating the package updates the API:
