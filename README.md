@@ -130,6 +130,8 @@ pnpm --dir apps/docs run deploy
 
 The deployment uses the Cloudflare account selected by Wrangler and publishes the `ctrlaltdoc-docs` Worker. The `main` branch workflow deploys automatically when the repository has `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` Actions secrets configured.
 
+Package releases are also automated. A push to `main` runs the package checks and publishes any package version that is newer than the version already on npm. npm trusted publishing provides the workflow's authentication through GitHub OIDC, so no npm token is stored in GitHub. Each package must have the `publish-npm.yml` workflow configured as its trusted publisher in npm package settings.
+
 ## Packages
 
 - [`ctrl-alt-doc`](https://www.npmjs.com/package/ctrl-alt-doc) — the documentation framework
